@@ -182,15 +182,57 @@ explanation: result.explanation,
   </div>
 </div>
 
-      <p style={{ opacity: 0.8 }}>
-        지금 단계는 “저장”이 아니라, 입력 → 결과가 잘 나오는지 확인하는 단계야.
-      <p style={{ marginTop: 24, fontSize: 12, opacity: 0.6 }}>
-  ※ 본 자가진단 결과는 참고용이며, 실제 개인회생 가능 여부는 법원 및 전문가 판단에 따라 달라질 수 있습니다.
-</p>
-      </p>
+  <div style={{ marginTop: 24, fontSize: 12, opacity: 0.6 }}>
+    ※ 본 자가진단 결과는 참고용이며, 실제 개인회생 가능 여부는 법원 및 전문가 판단에 따라 달라질 수 있습니다.
+  </div>
+
 
       <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
         <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
+  <button
+    onClick={() => setStep((s) => Math.max(1, s - 1))}
+    style={{ ...btnStyle, backgroundColor: "#ffffff", color: "#2F4F4F", border: "1px solid #CDE9DD" }}
+    disabled={step === 1}
+  >
+    이전
+  </button>
+
+  {step < 4 ? (
+    <button
+      onClick={() => {
+        if (step === 1) {
+          if (!name.trim() || !birthDate || !region.trim()) {
+            alert("이름/생년월일/거주지역은 필수입니다");
+            return;
+          }
+        }
+        setStep((s) => Math.min(4, s + 1));
+      }}
+      style={btnStyle}
+    >
+      다음
+    </button>
+  ) : (
+    <>
+      <button onClick={runDiagnosis} style={btnStyle}>
+        진단하기
+      </button>
+
+      <button
+        onClick={saveResult}
+        style={{
+          ...btnStyle,
+          opacity: result ? 1 : 0.5,
+          cursor: result ? "pointer" : "not-allowed",
+        }}
+        disabled={!result}
+      >
+        결과 저장
+      </button>
+    </>
+  )}
+</div>
+
   <button
     onClick={() => setStep((s) => Math.max(1, s - 1))}
     style={{ ...btnStyle, backgroundColor: "#ffffff", color: "#2F4F4F", border: "1px solid #CDE9DD" }}
@@ -299,11 +341,7 @@ explanation: result.explanation,
 )}
 
 
-        {step === 4 && (
-  <button onClick={runDiagnosis} style={btnStyle}>
-    진단하기
-  </button>
-)}
+   
 
 
         {step === 4 && result && (
