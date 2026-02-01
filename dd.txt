@@ -1,0 +1,11 @@
+https://zsusbfuwnuvdufrmauon.supabase.co
+
+
+sb_publishable_6-e630BiJXg33VDUnxWvyQ_EHoGF4t-
+
+
+
+
+
+NEXT_PUBLIC_SUPABASE_URL=https://zsusbfuwnuvdufrmauon.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_6-e630BiJXg33VDUnxWvyQ_EHoGF4t-
